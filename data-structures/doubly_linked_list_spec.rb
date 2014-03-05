@@ -74,6 +74,27 @@ describe DoublyLinkedList do
       expect(list.tail.value).to eq tail
     end
   end
+  context "#shift" do
+    it "sets head if it's nil" do
+      list = DoublyLinkedList.new
+      list.shift(head)
+      expect(list.head.value).to eq head
+    end
+    it "sets the head if it's already set" do
+      list.shift(node)
+      expect(list.head.value).to eq node
+    end
+    it "head is the tails element" do
+      list.shift(node)
+      expect(list.head.value).to eq node
+      expect(list.tail.value).to eq head
+      expect(list.next_node.value).to eq head
+    end
+    it "is head's previous element" do
+      list.shift(node)
+      expect(list.head.next_node.prev_node).to eq list.head
+    end
+  end
   context "#next_node" do
     it "traverses the list in order" do
       list.add(node)

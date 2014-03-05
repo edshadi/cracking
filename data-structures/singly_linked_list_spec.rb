@@ -62,6 +62,23 @@ describe SinglyLinkedList do
       expect(list.tail.value).to eq tail
     end
   end
+  context "#shift" do
+    it "sets head if it's nil" do
+      list = SinglyLinkedList.new
+      list.shift(head)
+      expect(list.head.value).to eq head
+    end
+    it "sets the head if it's already set" do
+      list.shift(node)
+      expect(list.head.value).to eq node
+    end
+    it "head is the tails element" do
+      list.shift(node)
+      expect(list.head.value).to eq node
+      expect(list.tail.value).to eq head
+      expect(list.next_node.value).to eq head
+    end
+  end
   context "#find" do
     it "returns the node if value is found" do
       expect(list.find(head).value).to eq head

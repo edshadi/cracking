@@ -19,6 +19,14 @@ class SinglyLinkedList
     @tail = @tail.next_node
   end
 
+  def shift node
+    node = Node.new(node)
+    @tail = @head = node and return if @head.nil?
+    node.next_node = @head
+    @head = node
+    self.reset!
+  end
+
   def next_node
     @current_node = @current_node.next_node
   end
