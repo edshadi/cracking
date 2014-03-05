@@ -1,4 +1,5 @@
 require_relative 'singly_linked_list'
+Entry = Struct.new(:key, :value)
 class HashTable
   attr_reader :length, :map
   def initialize
@@ -8,16 +9,17 @@ class HashTable
 
   def []= key, value
     hashed_key = self.hash_func(key)
+    entry = Entry.new(key, value)
     @length += 1
-    @map[hashed_key] = SinglyLinkedList.new([key, value]) and return unless @map[hashed_key]
-    @map[hashed_key].shift([key, value])
+    @map[hashed_key] = SinglyLinkedList.new(entry) and return unless @map[hashed_key]
+    @map[hashed_key].shift(entry)
   end
 
   def [] key
     if list = @map[self.hash_func(key)]
       current_node = list.current_node
       until list.current_node.nil?
-        return list.current_node.value.last if list.current_node.value.first == key
+        return list.current_node.value.value if list.current_node.value.key == key
         list.next_node
       end
     end
