@@ -10,7 +10,7 @@ class HashTable
     hashed_key = self.hash_func(key)
     @length += 1
     @map[hashed_key] = SinglyLinkedList.new([key, value]) and return unless @map[hashed_key]
-    @map[hashed_key].add([key, value])
+    @map[hashed_key].shift([key, value])
   end
 
   def [] key
