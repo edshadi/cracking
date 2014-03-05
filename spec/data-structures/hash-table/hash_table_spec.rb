@@ -14,6 +14,7 @@ describe HashTable do
       table["a"] = "a value"
       table["A"] = "A value"
       expect(table[key]).to eq value
+      expect(table["a"]).to eq "a value"
     end
   end
   context "#[]" do
