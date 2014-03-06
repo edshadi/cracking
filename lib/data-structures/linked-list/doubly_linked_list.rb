@@ -1,11 +1,4 @@
-class Node
-  attr_reader :value
-  attr_accessor :next, :prev_node
-  def initialize value
-    @value = value
-  end
-end
-
+require_relative 'node'
 class DoublyLinkedList
   include Enumerable
   attr_reader :head, :tail
@@ -16,7 +9,7 @@ class DoublyLinkedList
   def push_bottom node
     @tail = @head = Node.new(node) and return if @head.nil?
     @tail.next = Node.new(node)
-    @tail.next.prev_node = @tail
+    @tail.next.prev = @tail
     @tail = @tail.next
   end
 
@@ -24,7 +17,7 @@ class DoublyLinkedList
     node = Node.new(node)
     @tail = @head = node and return if @head.nil?
     node.next = @head
-    @head.prev_node = node
+    @head.prev = node
     @head = node
   end
 
@@ -49,9 +42,9 @@ class DoublyLinkedList
     @head = @head.next and return if @head.value == value
     node = self.find(value) || return
     next_node = node.next
-    prev_node = node.prev_node
-    next_node.prev_node = node.prev_node if next_node
-    prev_node.next = node.next
+    prev = node.prev
+    next_node.prev = node.prev if next_node
+    prev.next = node.next
   end
 
 end

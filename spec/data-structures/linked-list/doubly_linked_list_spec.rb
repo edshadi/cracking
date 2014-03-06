@@ -19,16 +19,16 @@ describe Node do
       expect(node.next).to eq next_node
     end
   end
-  context "#prev_node" do
+  context "#prev" do
     it "defaults to nil" do
-      expect(node.prev_node).to be_nil
+      expect(node.prev).to be_nil
     end
   end
-  context "#prev_node=" do
-    it "sets the prev_node" do
+  context "#prev=" do
+    it "sets the prev" do
       previous = "previous"
-      node.prev_node = previous
-      expect(node.prev_node).to eq previous
+      node.prev = previous
+      expect(node.prev).to eq previous
     end
   end
 end
@@ -91,7 +91,7 @@ describe DoublyLinkedList do
     end
     it "is head's previous element" do
       list.push_top(node)
-      expect(list.head.next.prev_node).to eq list.head
+      expect(list.head.next.prev).to eq list.head
     end
   end
 

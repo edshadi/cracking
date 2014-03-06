@@ -1,12 +1,4 @@
-class Node
-  attr_reader :value
-  attr_accessor :next
-  def initialize value
-    @value = value
-    @next = nil
-  end
-end
-
+require_relative 'node'
 class SinglyLinkedList
   include Enumerable
   attr_reader :head, :tail
@@ -46,13 +38,13 @@ class SinglyLinkedList
 
   def remove value
     @head = @head.next and return if @head.value == value
-    prev_node = @head
+    prev = @head
     current_node = @head.next
     until current_node.nil?
       if current_node.value == value
-        return prev_node.next = current_node.next
+        return prev.next = current_node.next
       end
-      prev_node = current_node
+      prev = current_node
       current_node = current_node.next
     end
   end
