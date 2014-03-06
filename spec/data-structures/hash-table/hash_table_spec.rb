@@ -1,28 +1,28 @@
 require_relative '../../spec_helper'
 describe HashTable do
   let(:key) { :a }
-  let(:value) { ":a value" }
+  let(:data) { ":a data" }
   let(:table) { HashTable.new }
   context "#[]=" do
     before(:each) do
-      table[key] = value
+      table[key] = data
     end
-    it "push_bottoms the value under the key" do
-      expect(table[key]).to eq value
+    it "push_bottoms the data under the key" do
+      expect(table[key]).to eq data
     end
-    it "values don't override each other override" do
-      table["a"] = "a value"
-      table["A"] = "A value"
-      expect(table[key]).to eq value
-      expect(table["a"]).to eq "a value"
+    it "datas don't override each other override" do
+      table["a"] = "a data"
+      table["A"] = "A data"
+      expect(table[key]).to eq data
+      expect(table["a"]).to eq "a data"
     end
   end
   context "#[]" do
     before(:each) do
-      table[key] = value
+      table[key] = data
     end
-    it "gets the value at the given key" do
-      expect(table[key]).to eq value
+    it "gets the data at the given key" do
+      expect(table[key]).to eq data
     end
   end
 
@@ -32,8 +32,8 @@ describe HashTable do
     end
 
     it "mods the length of the array" do
-      table[key] = value
-      table["another_key"] = value
+      table[key] = data
+      table["another_key"] = data
       expect(table.hash_func(key)).to eq key.length % 10
     end
   end

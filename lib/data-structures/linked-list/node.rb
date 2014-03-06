@@ -1,8 +1,8 @@
 class Node
-  attr_reader :value
+  attr_reader :data
   attr_accessor :next, :prev
-  def initialize value
-    @value = value
+  def initialize data
+    @data = data
     @next = nil
   end
 end

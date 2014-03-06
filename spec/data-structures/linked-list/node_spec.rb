@@ -1,10 +1,10 @@
 describe Node do
-  let(:value) { "sweet" }
+  let(:data) { "sweet" }
   let(:next_node) { "awesome" }
-  let(:node) { Node.new value }
-  context "#value" do
-    it "is initialized to the given value" do
-      expect(node.value).to eq value
+  let(:node) { Node.new data }
+  context "#data" do
+    it "is initialized to the given data" do
+      expect(node.data).to eq data
     end
   end
   context "#next" do

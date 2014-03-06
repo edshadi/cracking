@@ -21,10 +21,10 @@ class DoublyLinkedList
     @head = node
   end
 
-  def find value
+  def find data
     current_node = @head
     until current_node.nil?
-      return current_node if current_node.value == value
+      return current_node if current_node.data == data
       current_node = current_node.next
     end
   end
@@ -38,9 +38,9 @@ class DoublyLinkedList
     end
   end
 
-  def remove value
-    @head = @head.next and return if @head.value == value
-    node = self.find(value) || return
+  def remove data
+    @head = @head.next and return if @head.data == data
+    node = self.find(data) || return
     next_node = node.next
     prev = node.prev
     next_node.prev = node.prev if next_node

@@ -19,9 +19,9 @@ class HashTable
     if list = @map[self.hash_func(key)]
       current_node = list.head
       until current_node.nil?
-        if current_node.value.key == key
-          value = current_node.value.value
-          return value
+        if current_node.data.key == key
+          data = current_node.data.value
+          return data
         else
           current_node = current_node.next
         end

@@ -19,10 +19,10 @@ class SinglyLinkedList
     @head = node
   end
 
-  def find value
+  def find data
     current_node = @head
     until current_node.nil?
-      return current_node if current_node.value == value
+      return current_node if current_node.data == data
       current_node = current_node.next
     end
   end
@@ -36,12 +36,12 @@ class SinglyLinkedList
     end
   end
 
-  def remove value
-    @head = @head.next and return if @head.value == value
+  def remove data
+    @head = @head.next and return if @head.data == data
     prev = @head
     current_node = @head.next
     until current_node.nil?
-      if current_node.value == value
+      if current_node.data == data
         return prev.next = current_node.next
       end
       prev = current_node
