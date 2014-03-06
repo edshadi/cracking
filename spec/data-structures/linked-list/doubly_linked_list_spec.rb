@@ -8,15 +8,15 @@ describe Node do
       expect(node.value).to eq value
     end
   end
-  context "#next_node" do
+  context "#next" do
     it "defaults to nil" do
-      expect(node.next_node).to be_nil
+      expect(node.next).to be_nil
     end
   end
-  context "#next_node=" do
-    it "sets the next_node" do
-      node.next_node = next_node
-      expect(node.next_node).to eq next_node
+  context "#next=" do
+    it "sets the next" do
+      node.next = next_node
+      expect(node.next).to eq next_node
     end
   end
   context "#prev_node" do
@@ -35,7 +35,7 @@ end
 
 describe DoublyLinkedList do
   let(:head) { "head" }
-  let(:node) { "next_node" }
+  let(:node) { "next" }
   let(:list) { DoublyLinkedList.new head}
   context "#head" do
     it "defaults to nil" do
@@ -65,7 +65,7 @@ describe DoublyLinkedList do
       list.add(node)
       tail = "tail"
       list.add(tail)
-      expect(list.head.next_node.next_node.value).to eq tail
+      expect(list.head.next.next.value).to eq tail
     end
     it "is the tail element" do
       list.add(node)
@@ -88,26 +88,13 @@ describe DoublyLinkedList do
       list.shift(node)
       expect(list.head.value).to eq node
       expect(list.tail.value).to eq head
-      expect(list.next_node.value).to eq head
     end
     it "is head's previous element" do
       list.shift(node)
-      expect(list.head.next_node.prev_node).to eq list.head
+      expect(list.head.next.prev_node).to eq list.head
     end
   end
-  context "#next_node" do
-    it "traverses the list in order" do
-      list.add(node)
-      expect(list.next_node.value).to eq node
-    end
-  end
-  context "#prev_node" do
-    it "traverses the list in order" do
-      list.add(node)
-      list.next_node
-      expect(list.prev_node.value).to eq head
-    end
-  end
+
   context "#find" do
     it "returns the node if value is found" do
       expect(list.find(head).value).to eq head

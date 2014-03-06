@@ -17,14 +17,13 @@ class HashTable
 
   def [] key
     if list = @map[self.hash_func(key)]
-      current_node = list.current_node
-      until list.current_node.nil?
-        if list.current_node.value.key == key
-          value = list.current_node.value.value
-          list.reset!
+      current_node = list.head
+      until current_node.nil?
+        if current_node.value.key == key
+          value = current_node.value.value
           return value
         else
-          list.next_node
+          current_node = current_node.next
         end
       end
     end

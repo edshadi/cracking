@@ -8,22 +8,22 @@ describe Node do
       expect(node.value).to eq value
     end
   end
-  context "#next_node" do
+  context "#next" do
     it "defaults to nil" do
-      expect(node.next_node).to be_nil
+      expect(node.next).to be_nil
     end
   end
-  context "#next_node=" do
-    it "sets the next_node" do
-      node.next_node = next_node
-      expect(node.next_node).to eq next_node
+  context "#next=" do
+    it "sets the next" do
+      node.next = next_node
+      expect(node.next).to eq next_node
     end
   end
 end
 
 describe SinglyLinkedList do
   let(:head) { "head" }
-  let(:node) { "next_node" }
+  let(:node) { "next" }
   let(:list) { SinglyLinkedList.new head}
   context "#head" do
     it "defaults to nil" do
@@ -53,7 +53,7 @@ describe SinglyLinkedList do
       list.add(node)
       tail = "tail"
       list.add(tail)
-      expect(list.head.next_node.next_node.value).to eq tail
+      expect(list.head.next.next.value).to eq tail
     end
     it "is the tail element" do
       list.add(node)
@@ -76,7 +76,6 @@ describe SinglyLinkedList do
       list.shift(node)
       expect(list.head.value).to eq node
       expect(list.tail.value).to eq head
-      expect(list.next_node.value).to eq head
     end
   end
   context "#find" do
