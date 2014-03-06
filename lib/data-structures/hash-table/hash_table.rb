@@ -1,6 +1,7 @@
 require_relative '../linked-list/singly_linked_list'
 Entry = Struct.new(:key, :value)
 class HashTable
+  HASH_FUNCTION_FACTOR = 10 # this is super random
   attr_reader :length, :map
   def initialize
     @map = []
@@ -30,6 +31,6 @@ class HashTable
   end
 
   def hash_func key
-    key.length % 10
+    key.length % HASH_FUNCTION_FACTOR
   end
 end
