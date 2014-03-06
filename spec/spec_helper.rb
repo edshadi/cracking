@@ -1,2 +1,3 @@
 require 'rspec'
-Dir["./**/*.rb"].each {|f| require f}
+# require 'debugger';debugger;1
+Dir["./lib/**/*.rb"].each {|f| require f}
