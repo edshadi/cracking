@@ -16,6 +16,12 @@ describe HashTable do
       expect(table[key]).to eq data
       expect(table["a"]).to eq "a data"
     end
+    it "has to be a unique key" do
+      table["a"] = "a data"
+      expect {
+        table["a"] = "a data"
+      }.to raise_error(UniqueKeyError)
+    end
   end
   context "#[]" do
     before(:each) do
@@ -28,13 +34,13 @@ describe HashTable do
 
   context "#hash" do
     it "returns 0 if the array is empty" do
-      expect(table.hash_func(key)).to eq key.length % 10
+      expect(table.hash_func(key)).to eq key.length % HashTable::HASH_FUNCTION_FACTOR
     end
 
     it "mods the length of the array" do
       table[key] = data
       table["another_key"] = data
-      expect(table.hash_func(key)).to eq key.length % 10
+      expect(table.hash_func(key)).to eq key.length % HashTable::HASH_FUNCTION_FACTOR
     end
   end
 end

@@ -1,32 +1,23 @@
 require_relative '../linked-list/singly_linked_list'
 Entry = Struct.new(:key, :value)
 class HashTable
-  HASH_FUNCTION_FACTOR = 10 # this is super random
-  attr_reader :length, :map
+  HASH_FUNCTION_FACTOR = 10 # this is a simple solution, we should use array_length, resize and rehash.
   def initialize
     @map = []
-    @length = @map.length
   end
 
   def []= key, value
+    raise UniqueKeyError.new("key must be unique") if self[key]
     hashed_key = self.hash_func(key)
     entry = Entry.new(key, value)
-    @length += 1
     @map[hashed_key] = SinglyLinkedList.new(entry) and return unless @map[hashed_key]
     @map[hashed_key].push_top(entry)
   end
 
   def [] key
     if list = @map[self.hash_func(key)]
-      current_node = list.head
-      until current_node.nil?
-        if current_node.data.key == key
-          data = current_node.data.value
-          return data
-        else
-          current_node = current_node.next
-        end
-      end
+      entry = list.detect {|node| node.data.key == key }
+      entry.data.value if entry
     end
   end
 
@@ -34,3 +25,5 @@ class HashTable
     key.length % HASH_FUNCTION_FACTOR
   end
 end
+
+class UniqueKeyError < StandardError;end

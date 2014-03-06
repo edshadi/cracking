@@ -22,11 +22,7 @@ class DoublyLinkedList
   end
 
   def find data
-    current_node = @head
-    until current_node.nil?
-      return current_node if current_node.data == data
-      current_node = current_node.next
-    end
+    self.detect {|node| node.data == data }
   end
 
   def each

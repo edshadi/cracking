@@ -20,11 +20,7 @@ class SinglyLinkedList
   end
 
   def find data
-    current_node = @head
-    until current_node.nil?
-      return current_node if current_node.data == data
-      current_node = current_node.next
-    end
+    self.detect {|node| node.data == data }
   end
 
   def each
@@ -40,7 +36,7 @@ class SinglyLinkedList
     @head = @head.next and return if @head.data == data
     prev = @head
     current_node = @head.next
-    until current_node.nil?
+    self.each do
       if current_node.data == data
         return prev.next = current_node.next
       end
