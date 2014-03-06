@@ -7,7 +7,7 @@ describe HashTable do
     before(:each) do
       table[key] = value
     end
-    it "adds the value under the key" do
+    it "push_bottoms the value under the key" do
       expect(table[key]).to eq value
     end
     it "values don't override each other override" do

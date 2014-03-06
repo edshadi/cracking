@@ -39,41 +39,42 @@ describe SinglyLinkedList do
       expect(list.tail.value).to eq head
     end
   end
-  context "#add" do
+  context "#push_bottom" do
     it "sets head if it's nil" do
       list = SinglyLinkedList.new
-      list.add(head)
+      list.push_bottom(head)
       expect(list.head.value).to eq head
     end
     it "head is not affected if it's already set" do
-      list.add(node)
+      list.push_bottom(node)
       expect(list.head.value).to eq head
     end
-    it "adds the node to the end of the list" do
-      list.add(node)
+    it "push_bottoms the node to the end of the list" do
+      list.push_bottom(node)
       tail = "tail"
-      list.add(tail)
+      list.push_bottom(tail)
       expect(list.head.next.next.value).to eq tail
     end
     it "is the tail element" do
-      list.add(node)
+      list.push_bottom(node)
       tail = "tail"
-      list.add(tail)
+      list.push_bottom(tail)
       expect(list.tail.value).to eq tail
     end
   end
-  context "#shift" do
+
+  context "#push_top" do
     it "sets head if it's nil" do
       list = SinglyLinkedList.new
-      list.shift(head)
+      list.push_top(head)
       expect(list.head.value).to eq head
     end
     it "sets the head if it's already set" do
-      list.shift(node)
+      list.push_top(node)
       expect(list.head.value).to eq node
     end
     it "head is the tails element" do
-      list.shift(node)
+      list.push_top(node)
       expect(list.head.value).to eq node
       expect(list.tail.value).to eq head
     end
@@ -81,7 +82,7 @@ describe SinglyLinkedList do
   context "#find" do
     it "returns the node if value is found" do
       expect(list.find(head).value).to eq head
-      list.add(node)
+      list.push_bottom(node)
       expect(list.find(node).value).to eq node
     end
     it "returns nil if value not found" do
@@ -91,18 +92,23 @@ describe SinglyLinkedList do
 
   context "#remove" do
     it "removes the head if its the give value" do
-      list.add(node)
+      list.push_bottom(node)
       list.remove head
       expect(list.find(head)).to be_nil
       expect(list.head.value).to eq node
     end
     it "removes the node if value is not at head" do
-      list.add("another")
-      list.add(node)
+      list.push_bottom("another")
+      list.push_bottom(node)
       list.remove node
       expect(list.find(node)).to be_nil
       expect(list.find("another").value).to eq "another"
       expect(list.find(head).value).to eq head
+    end
+  end
+  context "#map" do
+    it "yields the block to each element" do
+      expect(list.map {|node| node.value }).to eq ["head"]
     end
   end
 end

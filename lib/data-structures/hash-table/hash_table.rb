@@ -12,7 +12,7 @@ class HashTable
     entry = Entry.new(key, value)
     @length += 1
     @map[hashed_key] = SinglyLinkedList.new(entry) and return unless @map[hashed_key]
-    @map[hashed_key].shift(entry)
+    @map[hashed_key].push_top(entry)
   end
 
   def [] key
