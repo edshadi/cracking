@@ -1,5 +1,4 @@
-require 'rspec'
-require_relative 'hash_table'
+require_relative '../../spec_helper'
 describe HashTable do
   let(:key) { :a }
   let(:value) { ":a value" }

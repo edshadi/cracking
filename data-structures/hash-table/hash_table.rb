@@ -1,4 +1,4 @@
-require_relative 'singly_linked_list'
+require_relative '../linked-list/singly_linked_list'
 Entry = Struct.new(:key, :value)
 class HashTable
   attr_reader :length, :map

@@ -1,4 +1,4 @@
-require_relative 'doubly_linked_list'
+require_relative '../../spec_helper'
 describe Node do
   let(:value) { "sweet" }
   let(:next_node) { "awesome" }
@@ -19,27 +19,15 @@ describe Node do
       expect(node.next_node).to eq next_node
     end
   end
-  context "#prev_node" do
-    it "defaults to nil" do
-      expect(node.prev_node).to be_nil
-    end
-  end
-  context "#prev_node=" do
-    it "sets the prev_node" do
-      previous = "previous"
-      node.prev_node = previous
-      expect(node.prev_node).to eq previous
-    end
-  end
 end
 
-describe DoublyLinkedList do
+describe SinglyLinkedList do
   let(:head) { "head" }
   let(:node) { "next_node" }
-  let(:list) { DoublyLinkedList.new head}
+  let(:list) { SinglyLinkedList.new head}
   context "#head" do
     it "defaults to nil" do
-      list = DoublyLinkedList.new
+      list = SinglyLinkedList.new
       expect(list.head).to be_nil
     end
     it "can be set with initial value" do
@@ -53,7 +41,7 @@ describe DoublyLinkedList do
   end
   context "#add" do
     it "sets head if it's nil" do
-      list = DoublyLinkedList.new
+      list = SinglyLinkedList.new
       list.add(head)
       expect(list.head.value).to eq head
     end
@@ -76,7 +64,7 @@ describe DoublyLinkedList do
   end
   context "#shift" do
     it "sets head if it's nil" do
-      list = DoublyLinkedList.new
+      list = SinglyLinkedList.new
       list.shift(head)
       expect(list.head.value).to eq head
     end
@@ -89,23 +77,6 @@ describe DoublyLinkedList do
       expect(list.head.value).to eq node
       expect(list.tail.value).to eq head
       expect(list.next_node.value).to eq head
-    end
-    it "is head's previous element" do
-      list.shift(node)
-      expect(list.head.next_node.prev_node).to eq list.head
-    end
-  end
-  context "#next_node" do
-    it "traverses the list in order" do
-      list.add(node)
-      expect(list.next_node.value).to eq node
-    end
-  end
-  context "#prev_node" do
-    it "traverses the list in order" do
-      list.add(node)
-      list.next_node
-      expect(list.prev_node.value).to eq head
     end
   end
   context "#find" do
