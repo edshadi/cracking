@@ -3,18 +3,18 @@ class SinglyLinkedList
   include Enumerable
   attr_reader :head, :tail
   def initialize head=nil
-    @head = @tail = Node.new head unless head.nil?
+    add_first_node(head) unless head.nil?
   end
 
   def push_bottom node
-    @tail = @head = Node.new(node) and return if @head.nil?
+    add_first_node(node) if @head.nil?
     @tail.next = Node.new(node)
     @tail = @tail.next
   end
 
   def push_top node
     node = Node.new(node)
-    @tail = @head = node and return if @head.nil?
+    add_first_node(node) if @head.nil?
     node.next = @head
     @head = node
   end
@@ -43,5 +43,11 @@ class SinglyLinkedList
       prev = current_node
       current_node = current_node.next
     end
+  end
+
+  private
+
+  def add_first_node(node)
+    @tail = @head = Node.new(node)
   end
 end
