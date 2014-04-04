@@ -3,11 +3,11 @@ class DoublyLinkedList
   include Enumerable
   attr_reader :head, :tail
   def initialize head=nil
-    @head = @tail = Node.new head unless head.nil?
+    add_first_node(head) unless head.nil?
   end
 
   def push_bottom node
-    @tail = @head = Node.new(node) and return if @head.nil?
+    add_first_node(node) if @head.nil?
     @tail.next = Node.new(node)
     @tail.next.prev = @tail
     @tail = @tail.next
@@ -15,7 +15,7 @@ class DoublyLinkedList
 
   def push_top node
     node = Node.new(node)
-    @tail = @head = node and return if @head.nil?
+    add_first_node(node) if @head.nil?
     node.next = @head
     @head.prev = node
     @head = node
@@ -43,4 +43,9 @@ class DoublyLinkedList
     prev.next = node.next
   end
 
+  private
+
+  def add_first_node(node)
+    @tail = @head = Node.new(node)
+  end
 end
