@@ -13,7 +13,7 @@ class StringBuffer
     raise EmptyBufferError.new("buffer is empty") if buffer.empty?
     sentence = ""
     buffer.each do |word|
-      sentence += word
+      sentence.concat(word) # or shovel operator <<
     end
     sentence
   end
