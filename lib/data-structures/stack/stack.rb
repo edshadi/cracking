@@ -6,18 +6,21 @@ class Stack
   end
 
   def empty?
-    @top == 0 ? true : false
+    @top.zero?
   end
 
   def push(value)
-    raise "Stack overflow" if @top == @length
+    raise StackOverflow if @top == @length
     @top += 1
     @stack[@top] = value
   end
 
   def pop
-    raise "Stack underflow" if self.empty?
+    raise StackUnderflow if self.empty?
     @top -= 1
     @stack[@top + 1]
   end
 end
+
+class StackOverflow < StandardError;end
+class StackUnderflow < StandardError;end
