@@ -20,6 +20,10 @@ class Stack
     @top -= 1
     @stack[@top + 1]
   end
+
+  def peek
+    @stack[@top]
+  end
 end
 
 class StackOverflow < StandardError;end

@@ -2,6 +2,7 @@ require_relative '../../spec_helper'
 
 describe Stack do 
   let(:stack_size) { 4 }
+  let(:element) { "friendship" }
   let(:stack) { Stack.new(stack_size) }
 
   it "initializes empty" do
@@ -9,11 +10,10 @@ describe Stack do
   end
 
   context "#push" do
-    let(:element) { 1 }
     it "pushes an element into the stack" do
       stack.push(element)
       expect(stack).to_not be_empty
-      expect(stack.pop).to eq 1
+      expect(stack.pop).to eq "friendship"
     end
 
     it "raises a stack overflow error if the stack is full" do
@@ -30,6 +30,14 @@ describe Stack do
 
     it "raises a stack underflow error if the stack is empty" do
       expect { stack.pop }.to raise_error(StackUnderflow)
+    end
+  end
+
+  context "#peek" do
+    it "returns the top element without removing it" do
+      stack.push(element)
+      expect(stack.peek).to eq element
+      expect(stack).to_not be_empty
     end
   end
 end
