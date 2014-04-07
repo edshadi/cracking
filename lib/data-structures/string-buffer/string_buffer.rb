@@ -10,7 +10,6 @@ class StringBuffer
   end
 
   def to_s
-    raise EmptyBufferError.new("buffer is empty") if buffer.empty?
     sentence = ""
     buffer.each do |word|
       sentence.concat(word) # or shovel operator <<
@@ -18,5 +17,3 @@ class StringBuffer
     sentence
   end
 end
-
-class EmptyBufferError < StandardError; end
