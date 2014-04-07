@@ -59,4 +59,16 @@ describe Queue do
     end
   end
 
+  describe '#peek' do
+    it "returns the first node's data" do
+      expect(single_queue.peek).to eq first.data
+    end
+
+    it "does not remove the first node from the queue" do
+      expect {
+        single_queue.peek
+        }.to_not change{ single_queue.first }
+    end
+  end
+
 end

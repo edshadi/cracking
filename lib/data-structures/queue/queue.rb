@@ -5,17 +5,22 @@ class Queue
   end
 
   def enqueue(node)
-    @first = @last = node and return if first == nil
+    @first = @last = node and return if first.nil?
     @last.next = node
     @last = last.next
   end
 
   def dequeue
-    return nil if first == nil
+    return nil if first.nil?
     data = first.data
     @first = first.next
-    @last = nil if first == nil
+    @last = nil if first.nil?
     data
+  end
+
+  def peek
+    return nil if first.nil?
+    first.data
   end
 
 end
