@@ -29,4 +29,21 @@ describe BinaryTree do
       expect(tree.root.right).to eq big_node
     end
   end
+
+  context "#search" do
+    before(:each) do
+      tree.insert(node)
+      tree.insert(small_node)
+      tree.insert(big_node)
+      tree.insert(middle_node)
+    end
+
+    it "returns the node with a key equal to the searched value" do
+      expect(tree.search(7)).to eq big_node
+    end
+
+    it "returns nil if a node with a key equal to the searched value is not found" do
+      expect(tree.search(3)).to be_nil
+    end
+  end
 end
