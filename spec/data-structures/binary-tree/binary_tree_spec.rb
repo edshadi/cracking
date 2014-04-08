@@ -6,6 +6,7 @@ describe BinaryTree do
   let(:small_node) { TreeNode.new(2) }
   let(:big_node) { TreeNode.new(7) }
   let(:middle_node) { TreeNode.new(6) }
+  let(:node_array) { [node, small_node, big_node, middle_node] }
 
   it "initializes with a nil root" do
     expect(tree.root).to be_nil
@@ -32,10 +33,7 @@ describe BinaryTree do
 
   context "#search" do
     before(:each) do
-      tree.insert(node)
-      tree.insert(small_node)
-      tree.insert(big_node)
-      tree.insert(middle_node)
+      node_array.each { |node| tree.insert(node) }
     end
 
     it "returns the node with a key equal to the searched value" do
@@ -44,6 +42,20 @@ describe BinaryTree do
 
     it "returns nil if a node with a key equal to the searched value is not found" do
       expect(tree.search(3)).to be_nil
+    end
+  end
+
+  context "#maximum" do
+    it "returns the node with the largest key in the tree" do
+      node_array.each { |node| tree.insert(node) }
+      expect(tree.maximum).to eq big_node
+    end
+  end
+
+  context "#minimum" do
+    it "returns the node with the smallest key in the tree" do
+      node_array.each { |node| tree.insert(node) }
+      expect(tree.minimum).to eq small_node
     end
   end
 end

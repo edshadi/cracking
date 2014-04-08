@@ -16,15 +16,29 @@ class BinaryTree
     end
   end
 
-  def search(value, root=self.root)
-    while root != nil && value != root.key
-      if value < root.key
-        root = root.left
+  def search(value, node=self.root)
+    while node != nil && value != node.key
+      if value < node.key
+        node = node.left
       else
-        root = root.right
+        node = node.right
       end
     end
-    root
+    node
+  end
+
+  def maximum(node=root)
+    until node.right.nil?
+      node = node.right
+    end 
+    node
+  end
+
+  def minimum(node=root)
+    until node.left.nil?
+      node = node.left
+    end
+    node
   end
 
   def tree_walk(root=self.root)
