@@ -58,4 +58,18 @@ describe BinaryTree do
       expect(tree.minimum).to eq small_node
     end
   end
+
+  context "#successor" do
+    before(:each) do
+      node_array.each { |node| tree.insert(node) }
+    end
+
+    it "returns the next largest node" do
+      expect(tree.successor(node)).to eq middle_node
+    end
+
+    it "returns nil if there is no successor" do
+      expect(tree.successor(big_node)).to be_nil
+    end
+  end
 end

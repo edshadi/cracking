@@ -41,6 +41,16 @@ class BinaryTree
     node
   end
 
+  def successor(node)
+    return minimum(node.right) if node.right != nil
+    parent = node.parent
+    while parent != nil && node == parent.right
+      node = parent
+      parent = node.parent
+    end
+    parent
+  end
+
   def tree_walk(root=self.root)
     unless root.nil?
       tree_walk(root.left)
