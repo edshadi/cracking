@@ -28,6 +28,7 @@ class BinaryTree
   end
 
   def maximum(node=root)
+    return nil if self.root == nil
     until node.right.nil?
       node = node.right
     end 
@@ -35,6 +36,7 @@ class BinaryTree
   end
 
   def minimum(node=root)
+    return nil if self.root == nil
     until node.left.nil?
       node = node.left
     end
@@ -57,6 +59,10 @@ class BinaryTree
       puts root.key
       tree_walk(root.right)
     end
+  end
+
+  def empty?
+    self.root.nil?
   end
 
   private

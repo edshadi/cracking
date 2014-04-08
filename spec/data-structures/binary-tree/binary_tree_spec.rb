@@ -50,12 +50,20 @@ describe BinaryTree do
       node_array.each { |node| tree.insert(node) }
       expect(tree.maximum).to eq big_node
     end
+
+    it "returns nil if the tree is empty" do
+      expect(tree.maximum).to be_nil
+    end
   end
 
   context "#minimum" do
     it "returns the node with the smallest key in the tree" do
       node_array.each { |node| tree.insert(node) }
       expect(tree.minimum).to eq small_node
+    end
+
+    it "returns nil if the tree is empty" do
+      expect(tree.maximum).to be_nil
     end
   end
 
@@ -70,6 +78,17 @@ describe BinaryTree do
 
     it "returns nil if there is no successor" do
       expect(tree.successor(big_node)).to be_nil
+    end
+  end
+
+  context "#empty?" do
+    it "returns true if the tree is empty" do
+      expect(tree).to be_empty
+    end
+
+    it "returns false if the true is not empty" do
+      tree.insert(node)
+      expect(tree).to_not be_empty
     end
   end
 end
