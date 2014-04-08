@@ -16,6 +16,14 @@ class BinaryTree
     end
   end
 
+  def tree_walk(root=self.root)
+    unless root.nil?
+      tree_walk(root.left)
+      puts root.key
+      tree_walk(root.right)
+    end
+  end
+
   private
 
   def find_parent(node)
