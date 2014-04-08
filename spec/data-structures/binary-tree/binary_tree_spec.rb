@@ -6,7 +6,8 @@ describe BinaryTree do
   let(:small_node) { TreeNode.new(2) }
   let(:big_node) { TreeNode.new(7) }
   let(:middle_node) { TreeNode.new(6) }
-  let(:node_array) { [node, small_node, big_node, middle_node] }
+  let(:mega_node) { TreeNode.new(8) }
+  let(:node_array) { [node, small_node, big_node, middle_node, mega_node] }
 
   it "initializes with a nil root" do
     expect(tree.root).to be_nil
@@ -48,7 +49,7 @@ describe BinaryTree do
   context "#maximum" do
     it "returns the node with the largest key in the tree" do
       node_array.each { |node| tree.insert(node) }
-      expect(tree.maximum).to eq big_node
+      expect(tree.maximum).to eq mega_node
     end
 
     it "returns nil if the tree is empty" do
@@ -77,7 +78,7 @@ describe BinaryTree do
     end
 
     it "returns nil if there is no successor" do
-      expect(tree.successor(big_node)).to be_nil
+      expect(tree.successor(mega_node)).to be_nil
     end
   end
 
