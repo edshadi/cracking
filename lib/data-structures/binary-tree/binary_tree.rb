@@ -6,6 +6,19 @@ class BinaryTree
   end
 
   def insert(node)
+    parent = find_parent(node)
+    if parent.nil? # tree was empty
+      self.root = node
+    elsif node.key < parent.key
+      parent.left = node
+    else
+      parent.right = node
+    end
+  end
+
+  private
+
+  def find_parent(node)
     parent = nil
     current_node = self.root
     until current_node.nil?
@@ -16,12 +29,6 @@ class BinaryTree
         current_node = current_node.right
       end
     end
-    if parent.nil? # tree was empty
-      self.root = node
-    elsif node.key < parent.key
-      parent.left = node
-    else
-      parent.right = node
-    end
+    parent
   end
 end
