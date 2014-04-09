@@ -10,10 +10,6 @@ class StringBuffer
   end
 
   def to_s
-    sentence = ""
-    buffer.each do |word|
-      sentence.concat(word) # or shovel operator <<
-    end
-    sentence
+    buffer.inject("", :<<)
   end
 end
