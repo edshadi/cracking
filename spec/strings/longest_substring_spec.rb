@@ -25,5 +25,9 @@ describe Strings do
     it 'should return the first largest substring for multiple substrings of max legnth' do
       expect(Strings.longest_substring('abcdecfg')).to eq 'abcde'
     end
+
+    it 'should raise an Arguement error if the string contains non-alphabetic letters' do
+      expect{Strings.longest_substring('abc?de')}.to raise_error(ArgumentError, 'Input can only contain alphabetic letters')
+    end
   end
 end
