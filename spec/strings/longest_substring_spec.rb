@@ -1,7 +1,12 @@
 require_relative '../spec_helper'
 
 describe Strings do
+  let(:alphabet){("a".."z").to_a.join}
   context '#longest_substring' do
+    it 'should handle alphabetic inputs' do
+      expect{Strings.longest_substring(alphabet)}.to_not raise_error
+    end
+
     it 'should return an empty string if an empty string is given' do
       expect(Strings.longest_substring('')).to eq ''
     end
@@ -27,6 +32,10 @@ describe Strings do
     end
 
     it 'should raise an Arguement error if the string contains non-alphabetic letters' do
+      expect{Strings.longest_substring('abc?de')}.to raise_error(ArgumentError)
+    end
+
+    it 'should raise an Argument error with have a custom message' do
       expect{Strings.longest_substring('abc?de')}.to raise_error(ArgumentError, 'Input can only contain alphabetic letters')
     end
   end

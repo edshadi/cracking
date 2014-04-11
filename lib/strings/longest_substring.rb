@@ -8,6 +8,11 @@
 module Strings
   extend self
   def longest_substring string
+    string = string.downcase
+    alphabet = ('a'..'z').to_a
+    unless string.split("").all?{|char| alphabet.include?(char)}
+      raise ArgumentError, 'Input can only contain alphabetic letters' 
+    end
     i = 0
     substr, longest = "", ""
     while i < string.length
