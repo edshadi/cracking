@@ -4,7 +4,7 @@ describe Strings do
   let(:alphabet){("a".."z").to_a.join}
   context '#longest_substring' do
     it 'should handle alphabetic inputs' do
-      expect{Strings.longest_substring(alphabet)}.to_not raise_error
+      expect{Strings.longest_substring(alphabet)}.to_not raise_error ArgumentError
     end
 
     it 'should return an empty string if an empty string is given' do
