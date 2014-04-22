@@ -32,10 +32,10 @@ describe Strings do
     end
 
     it 'should raise an Arguement error if the string contains non-alphabetic letters' do
-      expect{Strings.longest_substring('abc?de')}.to raise_error(ArgumentError)
+      expect{Strings.longest_substring('abc?de')}.to raise_error ArgumentError
     end
 
-    it 'should raise an Argument error with have a custom message' do
+    it 'should raise an Argument error with a custom message' do
       expect{Strings.longest_substring('abc?de')}.to raise_error(ArgumentError, 'Input can only contain alphabetic letters')
     end
   end
