@@ -8,14 +8,14 @@ class HashTable
 
   def []= key, value
     raise UniqueKeyError.new("key must be unique") if self[key]
-    hashed_key = self.hash_func(key)
+    hashed_key = hash_func(key)
     entry = Entry.new(key, value)
     @map[hashed_key] = SinglyLinkedList.new(entry) and return unless @map[hashed_key]
     @map[hashed_key].push_top(entry)
   end
 
   def [] key
-    if list = @map[self.hash_func(key)]
+    if list = @map[hash_func(key)]
       entry = list.detect {|node| node.data.key == key }
       entry.data.value if entry
     end

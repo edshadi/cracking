@@ -7,27 +7,27 @@ class DoublyLinkedList
   end
 
   def push_bottom node
-    add_first_node(node) if @head.nil?
-    @tail.next = Node.new(node)
-    @tail.next.prev = @tail
-    @tail = @tail.next
+    add_first_node(node) if head.nil?
+    tail.next = Node.new(node)
+    tail.next.prev = tail
+    @tail = tail.next
   end
 
   def push_top node
     node = Node.new(node)
-    add_first_node(node) if @head.nil?
-    node.next = @head
-    @head.prev = node
+    add_first_node(node) if head.nil?
+    node.next = head
+    head.prev = node
     @head = node
   end
 
   def find data
-    self.detect {|node| node.data == data }
+    detect {|node| node.data == data }
   end
 
   def each
-    return @head if @head.nil?
-    current_node = @head
+    return head if head.nil?
+    current_node = head
     until current_node.nil?
       yield current_node
       current_node = current_node.next
@@ -35,8 +35,8 @@ class DoublyLinkedList
   end
 
   def remove data
-    @head = @head.next and return if @head.data == data
-    node = self.find(data) || return
+    @head = head.next and return if head.data == data
+    node = find(data) || return
     next_node = node.next
     prev = node.prev
     next_node.prev = node.prev if next_node
